@@ -5,6 +5,11 @@ const FeedbackSchema = new mongoose.Schema(
     {
         name: {
             type: String,
+            validate: {
+                validator: function (value) {
+                    return /^[a-zA-Z]+$/.test(value);
+                },
+            },
         },
 
         email: {
@@ -15,10 +20,15 @@ const FeedbackSchema = new mongoose.Schema(
             trim: true,
             validate: [validator.isEmail, "Please provide a valid email."],
         },
+
         feedback: {
             type: String,
             required: [true, "Feedback is required"],
             minlength: [10, "Feedback should be at least 10 characters long"],
+            maxlength: [
+                1000,
+                "Feedback should not be more than 1000 characters",
+            ],
         },
     },
     {
@@ -26,6 +36,6 @@ const FeedbackSchema = new mongoose.Schema(
     }
 );
 
-const Example = mongoose.model("Example", FeedbackSchema);
+const Feedback = mongoose.model("Feedback", FeedbackSchema);
 
-export default Example;
+export default Feedback;

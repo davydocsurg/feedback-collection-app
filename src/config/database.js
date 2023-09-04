@@ -9,7 +9,7 @@ const mongoDBConnection = async () => {
     console.info("connecting...");
 
     try {
-        console.warn("Attempting MongoDB URI :" + MONGO_URI);
+        console.warn("Attempting MongoDB URI: " + MONGO_URI);
         await mongoose.connect(MONGO_URI);
         console.info(`Database connected successfully`);
     } catch (err) {

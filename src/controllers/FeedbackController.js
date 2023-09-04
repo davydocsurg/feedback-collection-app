@@ -1,5 +1,6 @@
 // controllers/feedbackController.js
 
+import Feedback from "../models/Feedback";
 import { sendAcknowledgmentEmail } from "../services/SendgridService";
 
 export const submitFeedback = async (req, res) => {
@@ -9,12 +10,14 @@ export const submitFeedback = async (req, res) => {
         // Send acknowledgment email
         await sendAcknowledgmentEmail(email, name);
 
-        // Handle feedback submission and saving to database
-        // ...
+        // Save feedback to database
+        await Feedback.create({ name, email, feedback });
 
         res.status(200).json({ message: "Feedback submitted successfully" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({
+            message: error.message ?? "Internal server error",
+        });
     }
 };
