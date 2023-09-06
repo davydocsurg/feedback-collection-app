@@ -6,11 +6,6 @@ const FeedbackSchema = new mongoose.Schema(
         name: {
             type: String,
             required: [true, "Name is required"],
-            validate: {
-                validator: function (value) {
-                    return /^[a-zA-Z]+$/.test(value);
-                },
-            },
         },
 
         email: {

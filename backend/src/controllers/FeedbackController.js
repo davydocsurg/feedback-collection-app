@@ -13,10 +13,12 @@ export const submitFeedback = async (req, res) => {
         // Save feedback to database
         await Feedback.create({ name, email, feedback });
 
-        res.status(200).json({ message: "Feedback submitted successfully" });
+        return res
+            .status(200)
+            .json({ message: "Feedback submitted successfully" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({
+        return res.status(500).json({
             message: error.message ?? "Internal server error",
         });
     }
