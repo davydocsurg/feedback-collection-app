@@ -1,7 +1,10 @@
 // controllers/feedbackController.js
 
 import Feedback from "../models/Feedback";
-import { sendAcknowledgmentEmail } from "../services/SendgridService";
+import {
+    notifySupportTeam,
+    sendAcknowledgmentEmail,
+} from "../services/SendgridService";
 
 export const submitFeedback = async (req, res) => {
     try {
@@ -9,6 +12,9 @@ export const submitFeedback = async (req, res) => {
 
         // Send acknowledgment email
         await sendAcknowledgmentEmail(email, name);
+
+        // Send notification to support team
+        await notifySupportTeam(name, email, feedback);
 
         // Save feedback to database
         await Feedback.create({ name, email, feedback });

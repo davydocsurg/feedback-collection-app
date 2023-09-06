@@ -18,3 +18,17 @@ export const sendAcknowledgmentEmail = async (toEmail, userName) => {
         console.error(error);
     }
 };
+
+export const notifySupportTeam = async (userName, userEmail, feedback) => {
+    try {
+        const msg = {
+            to: process.env.SUPPORT_EMAIL,
+            from: process.env.FROM_EMAIL,
+            subject: "New Feedback",
+            text: `You have received a new feedback from ${userName} (${userEmail}). Feedback: ${feedback}`,
+        };
+        await sgMail.send(msg);
+    } catch (error) {
+        console.error(error);
+    }
+};
