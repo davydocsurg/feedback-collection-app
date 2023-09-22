@@ -1,10 +1,8 @@
-// controllers/feedbackController.js
-
 import Feedback from "../models/Feedback";
 import {
     notifySupportTeam,
     sendAcknowledgmentEmail,
-} from "../services/SendgridService";
+} from "../services/SendGridService";
 
 export const submitFeedback = async (req, res) => {
     try {
