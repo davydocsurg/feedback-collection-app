@@ -19,7 +19,10 @@ export const submitFeedback = async (req, res) => {
 
         return res
             .status(200)
-            .json({ message: "Feedback submitted successfully" });
+            .json({
+                message:
+                    "Feedback submitted successfully! Check your email for more details.",
+            });
     } catch (error) {
         console.error(error);
         return res.status(500).json({
