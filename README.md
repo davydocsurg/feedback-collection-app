@@ -69,6 +69,9 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 # Sender Email Address
 FROM_EMAIL=your_sender_email_here
 
+# Sender Name
+FROM_EMAIL=your_sender_name_here
+
 # Support Team Email Address
 SUPPORT_EMAIL=your_support_email_here
 ```
